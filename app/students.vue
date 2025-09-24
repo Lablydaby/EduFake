@@ -38,6 +38,18 @@ import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 
+const columnsPanelRef = vueRef();
+const columnsOptions = [
+	{ label: 'First Name', value: 'firstName' },
+	{ label: 'Last Name', value: 'lastName' },
+	{ label: 'DOB', value: 'dob' },
+	{ label: 'Title', value: 'title' },
+	{ label: 'Phone', value: 'phone' },
+	{ label: 'Cell', value: 'cell' },
+	{ label: 'Email', value: 'email' }
+];
+const selectedColumns = ref(columnsOptions.map((o) => o.value));
+
 const students = ref([
 	{ id: 1, firstName: "John", lastName: "Doe", dob: "1990-01-01", title: "Cebu", phone: "132", cell: "094534213", email: "johndoe@gmail.com" },
 	{ id: 2, firstName: "Jane", lastName: "Smith", dob: "1992-02-02", title: "Manila", phone: "133", cell: "094534214", email: "janesmith@gmail.com" },
@@ -128,7 +140,7 @@ function changeSort(key) {
 <template>
 	<div class="p-6">
 			<div class="flex justify-between items-center mb-4">
-				<h1 class="text-2xl font-bold mb-4">Students</h1>
+				<h1 class="text-gray-700 text-2xl font-bold mb-4">Students</h1>
 			<div class="flex gap-2">
 				<Button label="Add" icon="pi pi-plus" class="p-button-primary" />
 	<Button label="Bulk Update" icon="pi pi-pencil" class="p-button-outlined" />
@@ -161,8 +173,26 @@ function changeSort(key) {
 					</div>
 				</OverlayPanel>
 			</div>
-	<Button label="Columns" icon="pi pi-columns" class="p-button-outlined" />
+		<Button label="Columns" icon="pi pi-pause" class="p-button-outlined" @click="(event) => columnsPanelRef.toggle(event)" />
+		<OverlayPanel ref="columnsPanelRef">
+			<div class="p-4 w-80">
+				<div class="mb-4">
+					<label class="block mb-2 font-semibold">Columns</label>
+					<div class="grid grid-cols-2 gap-2">
+						<div v-for="opt in columnsOptions" :key="opt.value" class="flex items-center gap-2">
+							<input type="checkbox" :value="opt.value" v-model="selectedColumns" />
+							<span>{{ opt.label }}</span>
+						</div>
+					</div>
+				</div>
+				<div class="flex justify-between mt-6">
+					<Button label="Clear" class="p-button-outlined" @click="selectedColumns = columnsOptions.map(o => o.value); columnsPanelRef.hide();" />
+					<Button label="Apply" class="p-button-primary" @click="columnsPanelRef.hide();" />
+				</div>
+			</div>
+		</OverlayPanel>
 		</div>
+
 
 		<div class="overflow-x-auto">
 			<DataTable
@@ -178,14 +208,14 @@ function changeSort(key) {
 				class="w-full text-sm"
 				responsiveLayout="scroll"
 			>
-				<Column selectionMode="multiple" headerStyle="width: 3em" />
-				<Column field="firstName" header="First Name" sortable />
-				<Column field="lastName" header="Last Name" sortable />
-				<Column field="dob" header="DOB" sortable />
-				<Column field="title" header="Title" sortable />
-				<Column field="phone" header="Phone" sortable />
-				<Column field="cell" header="Cell" sortable />
-				<Column field="email" header="Email" sortable />
+			<Column selectionMode="multiple" headerStyle="width: 3em" />
+			<Column v-if="selectedColumns.includes('firstName')" field="firstName" header="First Name" sortable />
+			<Column v-if="selectedColumns.includes('lastName')" field="lastName" header="Last Name" sortable />
+			<Column v-if="selectedColumns.includes('dob')" field="dob" header="DOB" sortable />
+			<Column v-if="selectedColumns.includes('title')" field="title" header="Title" sortable />
+			<Column v-if="selectedColumns.includes('phone')" field="phone" header="Phone" sortable />
+			<Column v-if="selectedColumns.includes('cell')" field="cell" header="Cell" sortable />
+			<Column v-if="selectedColumns.includes('email')" field="email" header="Email" sortable />
 			</DataTable>
 		</div>
 

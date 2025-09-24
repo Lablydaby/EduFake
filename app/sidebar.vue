@@ -30,7 +30,7 @@ const menuItems = [
   { label: 'Dashboard', icon: 'pi pi-home', page: 'dashboard', section: 'FAVORITES' },
   { label: 'My School', icon: 'pi pi-building', page: 'myschool', section: 'PREMISES' },
   { label: 'Locations', icon: 'pi pi-map-marker', page: 'locations', section: 'PREMISES' },
-  { label: 'Rooms', icon: 'pi pi-door', page: 'rooms', section: 'PREMISES' },
+  { label: 'Rooms', icon: 'pi pi-warehouse', page: 'rooms', section: 'PREMISES' },
   { label: 'Classes', icon: 'pi pi-users', page: 'classes', section: 'EDUCANDS' },
   { label: 'Students', icon: 'pi pi-id-card', page: 'students', section: 'EDUCANDS' },
   { label: 'Staffs', icon: 'pi pi-user', page: 'staffs', section: 'ASSOCIATES' },

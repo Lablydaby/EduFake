@@ -1,1 +1,67 @@
 @import "tailwindcss";
+
+:root {
+	--app-blue-500: #3b82f6; /* Tailwind blue-500 */
+	--app-blue-600: #2563eb; /* Tailwind blue-600 */
+    /* PrimeVue primary palette mapped to blue */
+    --p-primary-50: #eff6ff;
+    --p-primary-100: #dbeafe;
+    --p-primary-200: #bfdbfe;
+    --p-primary-300: #93c5fd;
+    --p-primary-400: #60a5fa;
+    --p-primary-500: #3b82f6; /* matches app-blue-500 */
+    --p-primary-600: #2563eb; /* matches app-blue-600 */
+    --p-primary-700: #1d4ed8;
+    --p-primary-800: #1e40af;
+    --p-primary-900: #1e3a8a;
+    --p-primary-color: var(--p-primary-500);
+    --p-primary-contrast-color: #ffffff;
+}
+
+/* PrimeVue primary button (filled only; not outlined/text) */
+.p-button.p-button-primary:not(.p-button-outlined):not(.p-button-text) {
+	background: var(--app-blue-500);
+	border-color: var(--app-blue-500);
+}
+.p-button.p-button-primary:not(.p-button-outlined):not(.p-button-text):hover {
+	background: var(--app-blue-600);
+	border-color: var(--app-blue-600);
+}
+
+/* PrimeVue primary button (outlined) */
+/* Make ALL outlined buttons neutral gray, overriding theme severities */
+.p-button.p-button-outlined {
+    background: transparent !important;
+    color: var(--app-blue-600) !important;
+    border-color: var(--app-blue-500) !important;
+}
+.p-button.p-button-outlined:hover {
+    background: rgba(37, 99, 235, 0.1) !important; /* blue-600 @ 10% */
+    color: var(--app-blue-600) !important;
+    border-color: var(--app-blue-600) !important;
+}
+
+/* Optional: treat success as blue too (if any green remains) */
+.p-button.p-button-success,
+.p-button.p-button-outlined.p-button-success:hover {
+	background: var(--app-blue-500);
+	border-color: var(--app-blue-500);
+}
+.p-button.p-button-success:hover {
+	background: var(--app-blue-600);
+	border-color: var(--app-blue-600);
+}
+
+/* Inputs & dropdowns: use blue border and focus ring */
+.p-inputtext:enabled:focus,
+.p-inputtext.p-inputtext:focus {
+    border-color: var(--app-blue-500) !important;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.2) !important;
+}
+
+.p-dropdown.p-focus,
+.p-multiselect.p-focus,
+.p-inputnumber.p-focus {
+    border-color: var(--app-blue-500) !important;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.2) !important;
+}
