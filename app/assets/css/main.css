@@ -28,8 +28,6 @@
 	border-color: var(--app-blue-600);
 }
 
-/* PrimeVue primary button (outlined) */
-/* Make ALL outlined buttons neutral gray, overriding theme severities */
 .p-button.p-button-outlined {
     background: transparent !important;
     color: var(--app-blue-600) !important;
@@ -65,3 +63,8 @@
     border-color: var(--app-blue-500) !important;
     box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.2) !important;
 }
+
+.p-datatable .p-datatable-thead > tr > th {
+    color: #111827;          /* text color */
+    background-color: #f8fafc; /* header bg */
+  }

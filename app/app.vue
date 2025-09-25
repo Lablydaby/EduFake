@@ -10,10 +10,12 @@ import Classes from './classes.vue';
 import Students from './students.vue';
 import Staffs from './staffs.vue';
 import ContactsBook from './contactsbook.vue';
+import StudentInfoV2 from './StudentInfoV2.vue';
 import Calendar from './calendar.vue';
 
 const currentPage = ref('students');
-const sidebarCollapsed = ref(false);
+const selectedStudent = ref(null);
+const studentTab = ref('personal');
 
 const pageComponents = {
   dashboard: Dashboard,
@@ -26,15 +28,65 @@ const pageComponents = {
   contactsbook: ContactsBook,
   calendar: Calendar,
 };
+
+function handleStudentSelect(student) {
+  selectedStudent.value = student;
+  studentTab.value = 'personal';
+}
+
+function handleBackToList() {
+  selectedStudent.value = null;
+}
+
+function handleStudentTabChange(tab) {
+  studentTab.value = tab;
+}
+
+function handleBreadcrumbNavigate(page) {
+  if (page === 'students') {
+    selectedStudent.value = null;
+    currentPage.value = 'students';
+  } else if (page === 'dashboard') {
+    selectedStudent.value = null;
+    currentPage.value = 'dashboard';
+  } else {
+    selectedStudent.value = null;
+    currentPage.value = page;
+  }
+}
+
+function handleBreadcrumbTabNavigate(tab) {
+  if (selectedStudent.value) {
+    studentTab.value = tab;
+  }
+}
 </script>
 
 <template>
   <div class="flex h-screen">
-    <Sidebar v-show="!sidebarCollapsed" @navigate="(page) => currentPage = page" />
+    <Sidebar @navigate="(page) => currentPage = page" />
     <div class="flex-1 flex flex-col overflow-auto">
-      <Header @toggleSidebar="() => sidebarCollapsed.value = !sidebarCollapsed.value" />
+      <Header
+        :currentPage="currentPage"
+        :selectedStudent="selectedStudent"
+        :studentTab="studentTab"
+        @navigate="handleBreadcrumbNavigate"
+        @student-tab-navigate="handleBreadcrumbTabNavigate"
+      />
       <div class="flex-1 overflow-auto">
-        <component :is="pageComponents[currentPage]" />
+        <template v-if="currentPage === 'students'">
+          <StudentInfoV2
+            v-if="selectedStudent"
+            :student="selectedStudent"
+            :activeTab="studentTab"
+            @tab-change="handleStudentTabChange"
+            @back="handleBackToList"
+          />
+          <Students v-else @student-select="handleStudentSelect" />
+        </template>
+        <template v-else>
+          <component :is="pageComponents[currentPage]" />
+        </template>
       </div>
     </div>
   </div>
