@@ -326,6 +326,8 @@ function goToStudentInfo(event) {
         :first="(currentPage - 1) * perPage"
         :totalRecords="filteredStudents.length"
         :rowsPerPageOptions="[10, 25, 50]"
+        paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+        currentPageReportTemplate="Showing {first}-{last} of {totalRecords}"
         :currentPage="currentPage"
         @page="
           (e) => {
@@ -334,7 +336,7 @@ function goToStudentInfo(event) {
           }
         "
         dataKey="id"
-        class="w-full text-sm cursor-pointer"
+        class="w-full text-sm cursor-pointer students-table"
         responsiveLayout="scroll"
         @row-click="goToStudentInfo"
       >

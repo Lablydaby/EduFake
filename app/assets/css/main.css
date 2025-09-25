@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -16,6 +17,14 @@
     --p-primary-900: #1e3a8a;
     --p-primary-color: var(--p-primary-500);
     --p-primary-contrast-color: #ffffff;
+    --p-gray-100: #64748b;
+    --p-gray-200: #CED4DA;
+    --p-font-family: 'Nunito', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+/* Global font */
+html, body {
+    font-family: 'Nunito', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 /* PrimeVue primary button (filled only; not outlined/text) */
@@ -30,8 +39,8 @@
 
 .p-button.p-button-outlined {
     background: transparent !important;
-    color: var(--app-blue-600) !important;
-    border-color: var(--app-blue-500) !important;
+    color: var(--p-gray-100) !important;
+    border-color: var(--p-gray-200) !important;
 }
 .p-button.p-button-outlined:hover {
     background: rgba(37, 99, 235, 0.1) !important; /* blue-600 @ 10% */
