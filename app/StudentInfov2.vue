@@ -128,19 +128,44 @@
             </div>
           </template>
           <template v-else-if="activeTab === 'services'">
-            <div class="border border-gray-200 rounded-lg p-6 bg-white text-gray-500 text-center">Services Recommended content...</div>
+            <div class="rounded-lg p-12 bg-white text-center text-gray-600">
+              <i class="pi pi-lightbulb text-7xl text-gray-400 mb-4"></i>
+              <div class="text-2xl font-semibold mb-2">No Services Available</div>
+              <div class="mb-6">Start by adding a therapy type to see your services here.</div>
+              <Button icon="pi pi-plus" label="Add Therapy Type" class="p-button-outlined" />
+            </div>
           </template>
           <template v-else-if="activeTab === 'documents'">
-            <div class="border border-gray-200 rounded-lg p-6 bg-white text-gray-500 text-center">Documents content...</div>
+            <div class="border border-gray-200 rounded-lg p-12 bg-white text-center text-gray-600">
+              <i class="pi pi-folder text-5xl text-gray-400 mb-4"></i>
+              <div class="text-2xl font-semibold mb-2">No Documents</div>
+              <div class="mb-6">Upload your first document to manage files for this student.</div>
+              <Button icon="pi pi-upload" label="Upload Document" class="p-button-outlined" />
+            </div>
           </template>
           <template v-else-if="activeTab === 'notes'">
-            <div class="border border-gray-200 rounded-lg p-6 bg-white text-gray-500 text-center">Notes content...</div>
+            <div class="border border-gray-200 rounded-lg p-12 bg-white text-center text-gray-600">
+              <i class="pi pi-comments text-5xl text-gray-400 mb-4"></i>
+              <div class="text-2xl font-semibold mb-2">No Notes Yet</div>
+              <div class="mb-6">Add a note to keep track of updates and observations.</div>
+              <Button icon="pi pi-plus" label="Add Note" class="p-button-outlined" />
+            </div>
           </template>
           <template v-else-if="activeTab === 'staffs'">
-            <div class="border border-gray-200 rounded-lg p-6 bg-white text-gray-500 text-center">Staffs content...</div>
+            <div class="border border-gray-200 rounded-lg p-12 bg-white text-center text-gray-600">
+              <i class="pi pi-users text-5xl text-gray-400 mb-4"></i>
+              <div class="text-2xl font-semibold mb-2">No Staff Assigned</div>
+              <div class="mb-6">Assign staff to collaborate with this student.</div>
+              <Button icon="pi pi-user-plus" label="Assign Staff" class="p-button-outlined" />
+            </div>
           </template>
           <template v-else-if="activeTab === 'schedules'">
-            <div class="border border-gray-200 rounded-lg p-6 bg-white text-gray-500 text-center">Schedules content...</div>
+            <div class="border border-gray-200 rounded-lg p-12 bg-white text-center text-gray-600">
+              <i class="pi pi-calendar text-5xl text-gray-400 mb-4"></i>
+              <div class="text-2xl font-semibold mb-2">No Schedules</div>
+              <div class="mb-6">Create a schedule to see appointments and sessions here.</div>
+              <Button icon="pi pi-plus" label="Create Schedule" class="p-button-outlined" />
+            </div>
           </template>
         </section>
       </main>
